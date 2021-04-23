@@ -7,7 +7,8 @@ import { CContainer, CRow, CCol } from '@coreui/react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
+  HashRouter
 } from 'react-router-dom';
 
 import Header from './components/header';
@@ -19,29 +20,32 @@ import TabsPage from './pages/tabs/tabs';
 
 function App() {
   return (
-    <CContainer fluid>
-      <CRow>
-        <Header/>
-        <Navbar/>
-      </CRow>
-      <CRow>
-        <CCol sm="auto">
-          <Sidebar/>
-        </CCol>
-        <CCol>
-          <CContainer fluid>
-            <Router>
-              <Switch>
-                <Route path="/registry" children={<TabsPage/>}/>
-                <Route path="/profile/:id" children={<TabsPage/>}/>              
-                <Route path="/list/:page" children={<ListPage/>}/>
-                <Route path="/" children={<ListPage/>}/>
-              </Switch>
-            </Router>
-          </CContainer>
-        </CCol>
-      </CRow>
-    </CContainer>
+    <HashRouter basename='/'>
+      <CContainer fluid>
+        <CRow>
+          <Header/>
+          <Navbar/>
+        </CRow>
+        <CRow>
+          <CCol sm="auto">
+            <Sidebar/>
+          </CCol>
+          <CCol>
+            <CContainer fluid>
+              <Router>
+                <Switch>
+                  <Route path="/registry" children={<TabsPage/>}/>
+                  <Route path="/profile/:id" children={<TabsPage/>}/>              
+                  <Route path="/list/:page" children={<ListPage/>}/>
+                  <Route path="/" children={<ListPage/>}/>
+                </Switch>
+              </Router>
+            </CContainer>
+          </CCol>
+        </CRow>
+      </CContainer>      
+    </HashRouter>
+
   );
 }
 
