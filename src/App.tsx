@@ -5,10 +5,9 @@ import './App.scss';
 
 import { CContainer, CRow, CCol } from '@coreui/react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
-  Route,
-  HashRouter
+  Route
 } from 'react-router-dom';
 
 import Header from './components/header';
@@ -20,32 +19,29 @@ import TabsPage from './pages/tabs/tabs';
 
 function App() {
   return (
-    <HashRouter basename='/'>
-      <CContainer fluid>
-        <CRow>
-          <Header/>
-          <Navbar/>
-        </CRow>
-        <CRow>
-          <CCol sm="auto">
-            <Sidebar/>
-          </CCol>
-          <CCol>
-            <CContainer fluid>
-              <Router>
-                <Switch>
-                  <Route path="/registry" children={<TabsPage/>}/>
-                  <Route path="/profile/:id" children={<TabsPage/>}/>              
-                  <Route path="/list/:page" children={<ListPage/>}/>
-                  <Route path="/" children={<ListPage/>}/>
-                </Switch>
-              </Router>
-            </CContainer>
-          </CCol>
-        </CRow>
-      </CContainer>      
-    </HashRouter>
-
+    <CContainer fluid>
+      <CRow>
+        <Header/>
+        <Navbar/>
+      </CRow>
+      <CRow>
+        <CCol sm="auto">
+          <Sidebar/>
+        </CCol>
+        <CCol>
+          <CContainer fluid>
+            <Router basename={process.env.PUBLIC_URL}>
+              <Switch>
+                <Route path="/registry" children={<TabsPage/>}/>
+                <Route path="/profile/:id" children={<TabsPage/>}/>              
+                <Route path="/list/:page" children={<ListPage/>}/>
+                <Route path="/" children={<ListPage/>}/>
+              </Switch>
+            </Router>
+          </CContainer>
+        </CCol>
+      </CRow>
+    </CContainer>      
   );
 }
 
