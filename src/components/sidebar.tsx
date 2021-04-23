@@ -4,11 +4,13 @@ import { freeSet } from '@coreui/icons';
 
 const Sidebar = () => {
   return (
-    <CSidebar className="sidebar-show">
+    <CSidebar style={{minHeight:'600px', height: '100%'}}>
       <CSidebarNav>
-        <CNavLink>
-          <CIcon content={freeSet.cilPeople}></CIcon>
-        </CNavLink>
+        <li>
+          <CNavLink href="/" className="justify-content-center">
+            <CIcon content={freeSet.cilPeople} size="lg"></CIcon>
+          </CNavLink>
+        </li>
       </CSidebarNav>
     </CSidebar>
   );

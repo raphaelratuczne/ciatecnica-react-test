@@ -2,7 +2,6 @@ import {
   CNavbar, 
   CContainer,
   CNavbarBrand,
-  CCollapse,
   CNavbarNav,
   CNavItem,
   CNavLink,
@@ -13,26 +12,28 @@ import CIcon from '@coreui/icons-react';
 import { freeSet } from '@coreui/icons';
 
 const Navbar = () => {
+
+  const page = RegExp('registry|profile').test(window.location.href) ? 'registry' : 'list';
+
   return (
-    <CNavbar expand="lg" className="bg-light">
+    <CNavbar expand="lg" className="bg-dark" colorScheme="dark">
       <CContainer fluid>
-        <CNavbarBrand href="#">Navbar</CNavbarBrand>
-        <CCollapse className="navbar-collapse" visible={true}>
-          <CNavbarNav className="me-auto mb-2 mb-lg-0">
-            <CNavItem>
-              <CNavLink href="#" active>
-                Users
-              </CNavLink>
-            </CNavItem>
-          </CNavbarNav>
-          <CBreadcrumb className="d-flex">
-            <CBreadcrumbItem href="#">
-              <CIcon content={freeSet.cilHome}></CIcon>
-            </CBreadcrumbItem>
-            <CBreadcrumbItem href="#" active>Users</CBreadcrumbItem>
-            <CBreadcrumbItem>List</CBreadcrumbItem>
-          </CBreadcrumb>
-        </CCollapse>
+        <CNavbarBrand>Navbar</CNavbarBrand>
+        <CNavbarNav className="me-auto mb-2 mb-lg-0">
+          <CNavItem>
+            <CNavLink href="/" active>
+              Users
+            </CNavLink>
+          </CNavItem>
+        </CNavbarNav>
+        <CBreadcrumb className="d-flex">
+          <CBreadcrumbItem href="/">
+            <CIcon content={freeSet.cilHome}></CIcon>
+          </CBreadcrumbItem>
+          <CBreadcrumbItem href="/">Users</CBreadcrumbItem>
+          {page === 'list' && <CBreadcrumbItem>List</CBreadcrumbItem>}
+          {page === 'registry' && <CBreadcrumbItem>Create</CBreadcrumbItem>}
+        </CBreadcrumb>
       </CContainer>
     </CNavbar>
   );
